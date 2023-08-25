@@ -180,7 +180,7 @@ async def handle_client(websocket, path):
         print("=================hhhhhhhhh================================",e)
 
 
-PORT = int(os.environ.get('PORT', 8765))
+PORT = int(os.environ.get('PORT', 10000))
 
 print(f"La aplicación se está ejecutando en el puerto: {PORT}")
 

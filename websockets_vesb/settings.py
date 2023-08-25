@@ -26,9 +26,8 @@ SECRET_KEY = 'django-insecure-@&-rs%a*!g)5x8%8eqwk*+3@rp6g8$7k3+mz4bj6@x$(jp!t9u
 #DEBUG = True
 DEBUG = 'RENDER' not in os.environ
 
-PORT = int(os.environ.get('PORT', default=10000))
 
-#PORT = int(os.environ.get('PORT', 8765))
+PORT = int(os.environ.get('PORT', 10000))
 
 CHROME_PATH = os.environ.get('CHROME_PATH', '/opt/render/project/bin/chrome-linux64')
 
