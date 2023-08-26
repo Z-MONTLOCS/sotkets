@@ -38,7 +38,6 @@ async def handle_client(websocket, path):
 
     print("Generando código para socket ID:")
 
-    driver = initialize_driver()
 
 
     try:
