@@ -393,27 +393,7 @@ def download_captcha_image(driver):
     # Obtener la URL de la imagen
     url_imagen = elemento_img.get_attribute('src')
 
-    # Descargar la imagen usando la librería requests
-    response = requests.get(url_imagen)
-
-    # Verificar si la descarga fue exitosa
-    if response.status_code == 200:
-        # Directorio donde se guardará la imagen
-        directorio_guardado = 'C:/test-vesb/test-bakend-api-env-phyton/bdua'
-
-        # Nombre de archivo para la imagen
-        nombre_archivo = 'imagen_captcha.png'
-
-        # Ruta completa del archivo
-        ruta_archivo = os.path.join(directorio_guardado, nombre_archivo)
-
-        # Guardar la imagen en el directorio especificado
-        with open(ruta_archivo, 'wb') as archivo:
-            archivo.write(response.content)
-
-        # print(f'Imagen guardada en: {ruta_archivo}')
-    else:
-        print('Error al descargar la imagen')
+    
 
     captcha_file = url_imagen  # Devolver la ruta completa del archivo de imagen
     return captcha_file
