@@ -11,8 +11,9 @@ import os
 
 
 
+
 # Importaciones locales
-from config_utils import (
+from websockets_vesb.config_utils import (
     initialize_driver,
     seleccionar_tipo_documento_y_identificacion,
     switch_to_new_tab,
@@ -29,101 +30,27 @@ from config_utils import (
 # Diccionario para mapear sockets a IDs de conexión
 socket_to_id = {}
 
-# async def handle_client(websocket, path):
-#     try:
-#         while True:
-#             message = await websocket.recv()
 
-#             if message == "generateCode":
-#                 # Obtener el ID del socket y guardarlo en el diccionario
-#                 socket_id = id(websocket)
-#                 socket_to_id[websocket] = socket_id
-
-
-#                 print(f"Generando código para socket ID: {socket_id}")
-
-#                 page_status = True
-#                 await websocket.send(json.dumps(page_status))
-
-#                 driver = initialize_driver()
-
-#                 #enviale la url de la iamgen la cliente para que la carge autumaticamnet
-
-#                 captcha_file = download_captcha_image(driver)
-#                 print('Información:',captcha_file)
-                
-             
-#                 await websocket.send(json.dumps({"imageLink": captcha_file}))
-
-
-#                 # codeNumber = await websocket.recv()
-#                 # print(f"Código generado por el cliente: {codeNumber}")
-
-#                 if message == "generateCode":
-
-#                     infoData = await websocket.recv()
-#                     print(f"Código generado por el cliente: {infoData}")
-
-#                     document_type = infoData.get('document_type')
-#                     identification_number = infoData.get('identification_number')
-#                     imageCode = infoData.get('imageCode')
-
-#                     #Imprimir los datos en la consola
-#                     print("============Datos recibidos Cliente=================")
-#                     print(" ")
-#                     print("Tipo de documento:", document_type)
-#                     print("Número de identificación:", identification_number)
-#                     print("Codigo:", imageCode)
-
-#                     print("=================================================")
-#                     print(" ")  
-
-#                     time.sleep(8)
-
-#                     # Seleccionar el elemento <select> por su id
-#                     elemento_select = Select(driver.find_element(By.ID, 'tipoDoc'))
-#                     elemento_select.select_by_value(document_type)
-
-#                     # Buscar el elemento por su id
-#                     elemento_input = driver.find_element(By.ID, 'txtNumDoc')
-#                     elemento_input.send_keys(identification_number)
-
-                    
-#                     #elemento_input = driver.find_element(By.ID, 'btnConsultar')
-#                     time.sleep(8)
-
-
-
-
-
-#                     #seleccionar_tipo_documento_y_identificacion(driver, infoData)
-    
-
-
-
-
-#         driver.quit()
-
-#     except Exception as e:
-#         error_response = {
-#             "connectionStatus": "error",
-#             "errorDescription": str(e)
-#         }
-#         await websocket.send(json.dumps(error_response))
-#         # Eliminar el socket del diccionario en caso de error
-#         if websocket in socket_to_id:
-#             del socket_to_id[websocket]
-
-# start_server = websockets.serve(handle_client, "localhost", 8765)
-
-# asyncio.get_event_loop().run_until_complete(start_server)
-# asyncio.get_event_loop().run_forever()
+print("Generando código para socket ID:")
 
 
 async def handle_client(websocket, path):
+
+    print("Generando código para socket ID:")
+
     try:
+        print("Generando código para socket ID:")
+
         while True:
+
             message = await websocket.recv()
+
+            print("Generando código para socket ID:", message)
+
+
+
+            print(f"Generando código para socket ID: {socket_id}")
+
 
             if message == "generateCode":
                 # Obtener el ID del socket y guardarlo en el diccionario
@@ -263,11 +190,8 @@ async def handle_client(websocket, path):
 
     except Exception as e:
         # Resto de tu código para manejar excepciones
-
         
         print("=================hhhhhhhhh================================",e)
-
-
 
 
 PORT = int(os.environ.get('PORT', 10000))
@@ -276,7 +200,6 @@ print(f"La aplicación se está ejecutando en el puerto: {PORT}")
 
 
 start_server = websockets.serve(handle_client, "0.0.0.0", PORT)
-
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
