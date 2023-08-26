@@ -15,6 +15,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 import requests
 import os
+import subprocess 
 
 
 
@@ -45,26 +46,59 @@ def initialize_driver():
 
         CHROME_PATH = os.environ.get('CHROME_PATH', '/opt/render/project/bin/chrome-linux64')
         CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/opt/render/project/bin/chromedriver-linux64')
-        # Inicializar el controlador de Chrome
 
-        chrome_options.add_experimental_option("prefs", prefs)
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--ignore-certificate-errors")
-        #chrome_options.add_argument("--text-only")
+        print("Installed Chromedriver Version:")
+        chromedriver_version_cmd = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver --version"
+        chromedriver_version_output = subprocess.getoutput(chromedriver_version_cmd)
+        print(chromedriver_version_output)
+        print("Installed Chrome Version:")
+        chrome_version_cmd = f"{CHROME_PATH}/chrome-linux64/chrome --version"
+        chrome_version_output = subprocess.getoutput(chrome_version_cmd)
+        print(chrome_version_output)
 
+        print("************ FIN VERSION **************")
+
+        print("************ CHROMEDRIVER_PATH Linea 87 **************", CHROMEDRIVER_PATH )
+
+        print("************ CHROMEDRIVER_PATH Linea 102 **************", CHROMEDRIVER_PATH )
+
+        print("************ Driver Linea 106 **************" )
+        #chrome_options = webdriver.ChromeOptions()
+
+        options = Options()
+       
         PATH_CHROME_PATH = f"{CHROME_PATH}/chrome-linux64/chrome"
-        chrome_options.binary_location =PATH_CHROME_PATH   #chrome binary location specified here
+       
+
+        options.binary_location =PATH_CHROME_PATH   #chrome binary location specified here
+        options.add_argument("--no-sandbox") #bypass OS security model
 
 
+        options.add_argument('--headless')
+
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+        options.add_argument("--disable-extensions")
+        #soptions.add_argument("--ignore-ssl-errors=true")
+        options.add_argument("--ignore-certificate-errors")
+        options.add_argument("--remote-debugging-port=9222")
+        
+        options.add_argument("--disable-dev-shm-usage") #overcome limited resource problems
+        options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        options.add_experimental_option('useAutomationExtension', False)
         PATH_CHROMEDRIVER_PATH = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver"
 
         service = Service(executable_path=PATH_CHROMEDRIVER_PATH)
 
-        driver = webdriver.Chrome( service=service, chrome_options=chrome_options)
+        driver = webdriver.Chrome( service=service, options=options)
+    
 
-        # Sitio web donde se encuentra el elemento
+        #driver=webdriver.Chrome()
+       
+ 
+        
+
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
-        driver.get(website)
 
         # Esperar a que cierto elemento esté presente en la página para verificar si la carga fue exitosa
         try:
