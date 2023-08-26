@@ -34,9 +34,18 @@ socket_to_id = {}
 
 
 async def handle_client(websocket, path):
+
+    print(f"Generando código para socket ID: {socket_id}")
+
     try:
+        print(f"Generando código para socket ID: {socket_id}")
+
         while True:
+
             message = await websocket.recv()
+
+            print(f"Generando código para socket ID: {message}")
+
 
 
             print(f"Generando código para socket ID: {socket_id}")
