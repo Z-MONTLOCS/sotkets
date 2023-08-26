@@ -185,7 +185,7 @@ PORT = int(os.environ.get('PORT', 10000))
 print(f"La aplicación se está ejecutando en el puerto: {PORT}")
 
 
-start_server = websockets.serve(handle_client, "localhost", PORT)
+start_server = websockets.serve(handle_client, "0.0.0.0", PORT)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
