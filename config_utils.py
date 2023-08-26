@@ -21,7 +21,7 @@ import os
 def initialize_driver():
 
    # Configuración de opciones para el navegador
-    chrome_options = webdriver.ChromeOptions()
+    options = webdriver.ChromeOptions()
     prefs = {
     "profile.default_content_setting_values": {
         "images": 2,  
@@ -33,8 +33,7 @@ def initialize_driver():
 
 
 
-    #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
-   # service = Service(path)
+   
 
 
 
