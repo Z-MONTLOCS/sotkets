@@ -99,6 +99,9 @@ def initialize_driver():
 
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
 
+        driver.get(website)
+
+
         # Esperar a que cierto elemento esté presente en la página para verificar si la carga fue exitosa
         try:
             WebDriverWait(driver, 10).until(
