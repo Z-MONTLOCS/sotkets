@@ -31,27 +31,18 @@ from websockets_vesb.config_utils import (
 socket_to_id = {}
 
 
-print("Generando código para socket ID:")
 
 
 async def handle_client(websocket, path):
 
-    print("Generando código para socket ID:")
 
 
 
     try:
-        print("Generando código para socket ID:")
 
         while True:
 
             message = await websocket.recv()
-
-            print("Generando código para socket ID:", message)
-
-
-
-            print(f"Generando código para socket ID: {socket_id}")
 
 
             if message == "generateCode":
@@ -193,7 +184,7 @@ async def handle_client(websocket, path):
     except Exception as e:
         # Resto de tu código para manejar excepciones
         
-        print("=================hhhhhhhhh================================",e)
+        print("=================Raiz ================================",e)
 
 
 PORT = int(os.environ.get('PORT', 10000))

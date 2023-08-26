@@ -191,7 +191,7 @@ async def handle_client(websocket, path):
     except Exception as e:
         # Resto de tu código para manejar excepciones
         
-        print("=================hhhhhhhhh================================",e)
+        print("=================carpeta================================",e)
 
 
 PORT = int(os.environ.get('PORT', 10000))
