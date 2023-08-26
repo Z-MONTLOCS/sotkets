@@ -31,20 +31,21 @@ from websockets_vesb.config_utils import (
 socket_to_id = {}
 
 
+print("Generando código para socket ID:")
 
 
 async def handle_client(websocket, path):
 
-    print(f"Generando código para socket ID: {socket_id}")
+    print("Generando código para socket ID:")
 
     try:
-        print(f"Generando código para socket ID: {socket_id}")
+        print("Generando código para socket ID:")
 
         while True:
 
             message = await websocket.recv()
 
-            print(f"Generando código para socket ID: {message}")
+            print("Generando código para socket ID:", message)
 
 
 
