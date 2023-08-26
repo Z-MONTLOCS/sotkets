@@ -7,6 +7,7 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
+import os
 
 
 
@@ -269,11 +270,13 @@ async def handle_client(websocket, path):
 
 
 
+PORT = int(os.environ.get('PORT', 10000))
+
+print(f"La aplicación se está ejecutando en el puerto: {PORT}")
 
 
+start_server = websockets.serve(handle_client, "0.0.0.0", PORT)
 
-
-start_server = websockets.serve(handle_client, "localhost", 8765)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
