@@ -38,6 +38,10 @@ async def handle_client(websocket, path):
         while True:
             message = await websocket.recv()
 
+
+            print(f"Generando código para socket ID: {socket_id}")
+
+
             if message == "generateCode":
                 # Obtener el ID del socket y guardarlo en el diccionario
                 socket_id = id(websocket)
