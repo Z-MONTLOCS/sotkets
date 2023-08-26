@@ -7,6 +7,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.chrome.options import Options
+
 
 
 
@@ -16,55 +18,33 @@ import os
 
 
 
-
-
-
-
-
-# def initialize_driver():
-#     path = 'C:/Users/chromedriver-win64/chromedriver.exe'
-#     service = Service(path)
-
-#     # Inicializar el controlador de Chrome
-#     driver = webdriver.Chrome(service=service)
-
-
-#     # chrome_options = webdriver.ChromeOptions()
-#     # chrome_options.add_argument('--headless')  # Agregar la opción headless
-#     # driver = webdriver.Chrome(service=service, options=chrome_options)
-
-#     # Sitio web donde se encuentra el elemento
-#     website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
-#     driver.get(website)
-
-   
-
-#     return driver
-
-
-
-
 def initialize_driver():
 
-
-
    # Configuración de opciones para el navegador
-    chrome_options = webdriver.ChromeOptions()# Configuración de la caché
+    chrome_options = webdriver.ChromeOptions()
     prefs = {
     "profile.default_content_setting_values": {
-        "images": 2,  # Desactivar la carga de imágenes
-        "javascript": 2,  # Bloquear la ejecución de JavaScript
-        "css": 2,  # Bloquear la carga de hojas de estilo
-        "plugins": 2,  # Bloquear la carga de plugins
+        "images": 2,  
+        "javascript": 2, 
+        "css": 2, 
+        "plugins": 2,  
     }
 }
 
 
 
-    path = 'C:/Users/chromedriver-win64/chromedriver.exe'
-    service = Service(path)
+    #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+   # service = Service(path)
+
+
 
     try:
+
+
+        print("************ INICIO VERSION **************")
+
+        CHROME_PATH = os.environ.get('CHROME_PATH', '/opt/render/project/bin/chrome-linux64')
+        CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/opt/render/project/bin/chromedriver-linux64')
         # Inicializar el controlador de Chrome
 
         chrome_options.add_experimental_option("prefs", prefs)
@@ -72,14 +52,15 @@ def initialize_driver():
         chrome_options.add_argument("--ignore-certificate-errors")
         #chrome_options.add_argument("--text-only")
 
+        PATH_CHROME_PATH = f"{CHROME_PATH}/chrome-linux64/chrome"
+        chrome_options.binary_location =PATH_CHROME_PATH   #chrome binary location specified here
 
 
-        #driver = webdriver.Chrome(service=service,)
+        PATH_CHROMEDRIVER_PATH = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver"
 
-        driver = webdriver.Chrome(options=chrome_options, service=service)
+        service = Service(executable_path=PATH_CHROMEDRIVER_PATH)
 
-
-
+        driver = webdriver.Chrome( service=service, chrome_options=chrome_options)
 
         # Sitio web donde se encuentra el elemento
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
